@@ -1,5 +1,0 @@
-This is a sample text file for testing the Word Frequency Counter Using Multithreading lab.
-
-Multithreading allows concurrent execution of code. This sample file contains several words. Some words repeat, and some words are unique. The word 'thread' appears multiple times. The word 'frequency' also appears more than once.
-
-Thread, thread, frequency, word, sample, test, thread, frequency, word.
