@@ -1,0 +1,44 @@
+
+# Final Report
+
+## Integration Overview
+The integrated shell combines all major components from previous deliverables into a single, cohesive program:
+
+- **Process Management & Basic Shell (Deliverable 1):**
+	The shell supports standard commands (ls, cat, cd, etc.), background jobs, and process control. This is accessible via the menu and forms the foundation for command execution.
+
+- **Scheduling (Deliverable 2):**
+	The shell provides access to scheduling demos (Round Robin, Priority-Based) through the menu. These are launched as separate scripts, demonstrating process scheduling algorithms and their metrics.
+
+- **Memory Management & Synchronization (Deliverable 3):**
+	The shell integrates memory management (paging, replacement algorithms) and synchronization (producer-consumer problem) by launching the relevant demo scripts from the menu. This allows users to interactively test memory and synchronization features.
+
+The integration is achieved by adding a menu command in the shell, which lets users launch each deliverable's demo in a new process. The main shell remains accessible for core features, while demos run independently.
+
+## Piping Implementation
+Piping is implemented by parsing the user's input for the '|' character. When a command line contains pipes (e.g., `cat file.txt | grep error | sort`), the shell splits the input into individual commands. Each command is executed in a subprocess, and the output of one subprocess is connected to the input of the next using Python's subprocess.PIPE. The final output is displayed to the user. This allows chaining multiple commands, just like a real Unix shell.
+
+## Security Mechanisms
+
+- **User Authentication:**
+	On startup, the shell requires users to log in with a username and password. User credentials and roles (admin, user) are defined in the auth.py module. Only authenticated users can access the shell.
+
+- **File Permissions:**
+	Each user has a set of permissions for files (read, write, execute). Before any file operation (e.g., reading with cat), the shell checks if the user has the required permission. Admin users have full access, while standard users are restricted based on their permissions. This is simulated in Python and enforced at the shell level.
+
+## Challenges and Improvements
+
+- **Integration:**
+	Bringing together multiple deliverables required careful design of the menu system and subprocess management. Ensuring that demos could be launched independently without interfering with the main shell was a key challenge.
+
+- **Security Simulation:**
+	Simulating file permissions in Python (rather than at the OS level) required custom logic to check permissions before file operations. This ensures users cannot access files beyond their assigned rights.
+
+- **Piping:**
+	Implementing piping required managing subprocesses and connecting their input/output streams. Handling errors and edge cases (e.g., invalid commands, permission errors) was important for robustness.
+
+- **Improvements:**
+	Future improvements could include real OS-level user and file permissions, more advanced scheduling and memory demos, and enhanced error handling and logging.
+
+## Screenshots
+(Add screenshots for piping, authentication, and file permissions after running the shell.)
